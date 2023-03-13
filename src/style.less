@@ -1,0 +1,103 @@
+:root {
+  --text-color: #262626;
+  --bg-color: #fff;
+  --border-color: #ccc;
+  --icon-color: #d5d5d5;
+  color: var(--text-color, #262626);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Chinese Quote, Segoe UI, Roboto, RobotoNum, PingFang SC, Hiragino Sans GB, Microsoft YaHei,
+    Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  color: var(--text-color, #333333);
+  background: #f5f5f5;
+}
+
+#app {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  overflow-y: hidden;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+}
+
+.ant-btn {
+  border-radius: var(--border-radius, 4px);
+}
+
+.ant-input {
+  border-radius: var(--border-radius, 4px);
+}
+
+.link {
+  color: var(--primary-color, #326ffd);
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--primary-color-hover, #0049f4);
+}
+
+.btn {
+  width: 100%;
+
+  &:hover {
+    box-shadow: 0px 18px 68px rgba(50, 150, 222, 0.46);
+  }
+}
+
+.ant-input {
+  border-radius: var(--border-radius, 4px);
+  border-color: var(--border-color, #d9d9d9);
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+// 滚动条样式
+.scrollbar {
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #e1e1e1;
+    border-radius: 4px;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
