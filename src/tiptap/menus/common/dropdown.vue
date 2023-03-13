@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
 
-withDefaults(defineProps<{ placement?: 'top' | 'bottom'; w?: string }>(), {
+withDefaults(defineProps<{ placement?: string; w?: string }>(), {
   placement: () => 'bottom',
   w: () => '100%'
 })

@@ -99,13 +99,26 @@
 
     li {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       
       label {
         box-sizing: border-box;
-        padding-top: 3px;
+        padding-top: 2px;
         margin-right: 5px;
       }
     }
+  }
+
+  blockquote {
+    margin: 0 0 15px;
+    padding: 0px 15px;
+    border-left: 6px solid #eee;
+    color: var(--text-color, #333);
+  }
+
+  hr {
+    margin: 15px 0;
+    border: 0;
+    border-top: 1px solid #eee;
   }
 }

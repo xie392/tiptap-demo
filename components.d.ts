@@ -9,12 +9,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AAffix: typeof import('ant-design-vue/es')['Affix']
-    AButton: typeof import('ant-design-vue/es')['Button']
-    ASpace: typeof import('ant-design-vue/es')['Space']
-    ATooltip: typeof import('ant-design-vue/es')['Tooltip']
-    Editor: typeof import('./src/components/editor.vue')['default']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Layout: typeof import('./src/components/layout.vue')['default']
     SvgIcon: typeof import('./src/components/svg-icon.vue')['default']
   }

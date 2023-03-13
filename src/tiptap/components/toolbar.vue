@@ -49,6 +49,8 @@ import TextStyle from 'tiptap/menus/text-style.vue'
 import BulletList from 'tiptap/menus/bullet-list.vue'
 import OrderList from 'tiptap/menus/order-list.vue'
 import TaskList from 'tiptap/menus/task-list.vue'
+import lineHeight from 'tiptap/menus/line-height.vue'
+import Blockquote from 'tiptap/menus/blockquote.vue'
 
 const props = defineProps<{ editor: Editor }>()
 const placement = ref<string>('bottom')
@@ -74,6 +76,13 @@ const items = reactive([
   markRaw(BulletList),
   markRaw(OrderList),
   markRaw(TaskList),
+  // 缩进
+  // markRaw(Indent),
+  // markRaw(Outdent),
+  // markRaw(Divider),
+  markRaw(lineHeight),
+  markRaw(Divider),
+  markRaw(Blockquote),
 ])
 
 

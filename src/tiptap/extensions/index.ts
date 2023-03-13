@@ -27,7 +27,7 @@ import FontFamily from '@tiptap/extension-font-family'
 import Underline from '@tiptap/extension-underline'
 import Color from '@tiptap/extension-color'
 import TaskList from '@tiptap/extension-task-list'
-import TaskItem from '@tiptap/extension-task-item'
+// import TaskItem from '@tiptap/extension-task-item'
 import TextAlign from '@tiptap/extension-text-align'
 import BubbleMenu from '@tiptap/extension-bubble-menu'
 
@@ -35,20 +35,21 @@ import BubbleMenu from '@tiptap/extension-bubble-menu'
 import { FontSize } from 'tiptap/extensions/font-size'
 import { TextColor } from 'tiptap/extensions/text-color'
 import { BackgroundColor } from 'tiptap/extensions/background-color'
-// import { TaskItem } from 'tiptap/extensions/task-item'
+import { TaskItem } from 'tiptap/extensions/task-item'
+import { LineHeight } from 'tiptap/extensions/line-height'
 // import { Indent } from '../extensions/indent'
 
 const placeholders = ['使用 markdown 语法进行输入', '请输入内容', '一个占位提示']
 
-// const CustomDocument = Document.extend({
-//   content: 'heading block*'
-// })
+const CustomDocument = Document.extend({
+  content: 'heading block*'
+})
 
 export const extensions = [
   // Blockquote,
   BubbleMenu.configure({
     // 选择在哪些节点上显示菜单
-    types: ['heading', 'paragraph', 'image'],
+    // types: ['heading', 'paragraph', 'image'],
   }),
   BackgroundColor,
   Color.configure({
@@ -67,6 +68,7 @@ export const extensions = [
   Link.configure({
     autolink: true
   }),
+  LineHeight,
   // OrderedList,
   Placeholder.configure({
     // @ts-ignore

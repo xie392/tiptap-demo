@@ -12,7 +12,7 @@
 <script setup lang="ts">
 interface TooltipProps {
   title: string
-  placement?: 'top' | 'bottom'
+  placement?: string
 }
 
 const props = withDefaults(defineProps<TooltipProps>(), {

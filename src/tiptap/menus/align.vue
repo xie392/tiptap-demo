@@ -1,12 +1,17 @@
 <template>
   <Dropdown ref="dropdown" w="38px" :placement="placement">
     <template #btn>
-      <div class="select-title" :class="{ 'select-title-active': options.some((v) => v.icon === value) }">
-        <div class="select-title-text">
-          <svg-icon :icon="value" class="icon-btn" />
+      <ToolTip title="对齐方式" :placement="placement">
+        <div
+          class="select-title"
+          :class="{ 'select-title-active': options.some((v) => v.icon === value) }"
+        >
+          <div class="select-title-text">
+            <svg-icon :icon="value" class="icon-btn" />
+          </div>
+          <span class="select-title-icon"></span>
         </div>
-        <span class="select-title-icon"></span>
-      </div>
+      </ToolTip>
     </template>
     <template #content>
       <div class="select-content">
@@ -42,9 +47,9 @@ interface Options {
 }
 
 const props = defineProps<{ editor: Editor; placement?: string }>()
-const dropdown = ref<HTMLElement | null>(false)
+const dropdown = ref<HTMLElement | null>(null)
 const value = ref<string>('tntin-svg_134')
-const options = reactive<Options>([
+const options = reactive<Array<Options>>([
   {
     name: '左对齐',
     value: 'left',
@@ -74,6 +79,7 @@ const options = reactive<Options>([
 const change = (value: Options) => {
   value.event()
   listener()
+  // @ts-ignore
   dropdown.value && dropdown.value.close()
 }
 
@@ -116,6 +122,7 @@ onUnmounted(() => {
 }
 .select-title .select-title-text {
   width: 20px;
+  vertical-align: sub;
 }
 
 .select-title-active {
