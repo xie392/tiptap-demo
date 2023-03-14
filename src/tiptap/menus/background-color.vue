@@ -7,8 +7,8 @@
           <span
             class="underline"
             :style="{
-              background: editor.isActive('textStyle', { backgroundColor: picker?.selectColor })
-                ? picker?.selectColor
+              background: editor.isActive('textStyle', { backgroundColor: selectColor })
+                ? selectColor
                 : '#000'
             }"
           ></span>
@@ -16,7 +16,7 @@
       </ToolTip>
     </template>
     <template #content>
-      <ColorPicker :editor="editor" type="bg-color" :colse="dropdown?.close" ref="picker" />
+      <ColorPicker :editor="editor" type="bg-color" :colse="colse" ref="picker" />
     </template>
   </Dropdown>
 </template>
@@ -31,6 +31,12 @@ const props = defineProps<{ editor: Editor; placement?: string }>()
 const dropdown = ref<HTMLElement | null>(null)
 const picker = ref<HTMLElement | null>(null)
 const color = ref<string>('')
+
+// @ts-ignore
+const colse = () => dropdown.value && dropdown.value.close()
+
+// @ts-ignore
+const selectColor = computed(() => (picker.value && picker.value.selectColor) ?? '')
 </script>
 
 <style scoped>

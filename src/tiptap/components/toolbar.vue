@@ -51,11 +51,17 @@ import OrderList from 'tiptap/menus/order-list.vue'
 import TaskList from 'tiptap/menus/task-list.vue'
 import lineHeight from 'tiptap/menus/line-height.vue'
 import Blockquote from 'tiptap/menus/blockquote.vue'
+import Link from 'tiptap/menus/link.vue'
+import More from 'tiptap/menus/more.vue'
+
+import Paper from 'tiptap/menus/test/paper.vue'
 
 const props = defineProps<{ editor: Editor }>()
 const placement = ref<string>('bottom')
 
 const items = reactive([
+  markRaw(More),
+  markRaw(Divider),
   markRaw(Redo),
   markRaw(Undo),
   markRaw(Clear),
@@ -83,10 +89,13 @@ const items = reactive([
   markRaw(lineHeight),
   markRaw(Divider),
   markRaw(Blockquote),
+  markRaw(Link)
+
+  // test
+  // markRaw(Paper),
 ])
 
-
-const toMarkRaw = (component:Component) => {
+const toMarkRaw = (component: Component) => {
   return markRaw(component)
 }
 </script>

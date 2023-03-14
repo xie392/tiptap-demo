@@ -4,7 +4,7 @@
       <ToolTip title="行高" :placement="placement">
         <div class="select-title">
           <div class="select-title-text">
-            <svg-icon icon="tntin-svg_132" class="icon-btn" />
+            <svg-icon icon="tntin-svg_6" class="icon-btn" />
           </div>
           <span class="select-title-icon"></span>
         </div>

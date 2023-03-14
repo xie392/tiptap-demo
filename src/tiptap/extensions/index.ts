@@ -16,7 +16,6 @@ import ListItem from '@tiptap/extension-list-item'
 import OrderedList from '@tiptap/extension-ordered-list'
 import Paragraph from '@tiptap/extension-paragraph'
 import Strike from '@tiptap/extension-strike'
-import Link from '@tiptap/extension-link'
 import SubsCript from '@tiptap/extension-subscript'
 import Superscript from '@tiptap/extension-superscript'
 import { Placeholder } from '@tiptap/extension-placeholder'
@@ -30,32 +29,49 @@ import TaskList from '@tiptap/extension-task-list'
 // import TaskItem from '@tiptap/extension-task-item'
 import TextAlign from '@tiptap/extension-text-align'
 import BubbleMenu from '@tiptap/extension-bubble-menu'
+import Link from '@tiptap/extension-link'
 
 // 基础(自定义)
 import { FontSize } from 'tiptap/extensions/font-size'
-import { TextColor } from 'tiptap/extensions/text-color'
+// import { TextColor } from 'tiptap/extensions/text-color'
 import { BackgroundColor } from 'tiptap/extensions/background-color'
 import { TaskItem } from 'tiptap/extensions/task-item'
 import { LineHeight } from 'tiptap/extensions/line-height'
+import { PaperDrawing } from 'tiptap/extensions/paper'
+import { BuiltLink } from 'tiptap/extensions/link'
 // import { Indent } from '../extensions/indent'
 
 const placeholders = ['使用 markdown 语法进行输入', '请输入内容', '一个占位提示']
 
-const CustomDocument = Document.extend({
-  content: 'heading block*'
-})
+// const CustomDocument = Document.extend({
+//   content: 'heading block*'
+// })
+
+// const CustomDocument = Document.extend({
+//   content: 'taskList',
+// })
+
+// const CustomTaskItem = TaskItem.extend({
+//   content: 'inline*',
+// })
 
 export const extensions = [
-  // Blockquote,
+  // BubbleMenu.configure({
+  // 选择在哪些节点上显示菜单
+  // types: ['heading', 'paragraph', 'image'],
+  // }),
   BubbleMenu.configure({
-    // 选择在哪些节点上显示菜单
-    // types: ['heading', 'paragraph', 'image'],
+    // @ts-ignore
+    shouldShow: ({ editor, view, state, oldState, from, to }) => {
+      // only show the bubble menu for images and links
+      return editor.isActive('image') || editor.isActive('link')
+    }
   }),
   BackgroundColor,
   Color.configure({
     types: ['textStyle']
   }),
-  TextColor,
+  // TextColor,
   TextAlign.configure({
     types: ['heading', 'paragraph', 'image']
   }),
@@ -65,11 +81,11 @@ export const extensions = [
   }),
   // HorizontalRule,
   // Indent,
-  Link.configure({
-    autolink: true
-  }),
+  // Link.configure({
+  //   autolink: true
+  // }),
+  // Link,
   LineHeight,
-  // OrderedList,
   Placeholder.configure({
     // @ts-ignore
     placeholder: ({ node, editor }) => {
@@ -92,5 +108,10 @@ export const extensions = [
     }
   }),
   TaskItem,
-  Underline
+  Underline,
+  PaperDrawing,
+  // Document.extend({
+  //   content: 'paper',
+  // }),
+  BuiltLink
 ]

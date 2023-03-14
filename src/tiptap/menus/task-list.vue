@@ -1,7 +1,7 @@
 <template>
   <ToolTip title="任务列表" :placement="placement">
     <button class="tool-btn" @click="change" :class="{'tool-btn-active':editor.isActive('tasklist')}">
-      <svg-icon icon="tntin-svg_34" class="icon-btn" />
+      <svg-icon icon="tntin-svg_33" class="icon-btn" />
     </button>
   </ToolTip>
 </template>

@@ -30,7 +30,7 @@ import Dropdown from 'tiptap/menus/common/dropdown.vue'
 import ToolTip from 'tiptap/menus/common/tooltip.vue'
 
 const props = defineProps<{ editor: Editor; placement?: string }>()
-const dropdown = ref<HTMLElement | null>(false)
+const dropdown = ref<HTMLElement | null>(null)
 const value = ref<string>('Chinese Quote')
 const options = reactive([
   'Chinese Quote',
@@ -57,8 +57,9 @@ const options = reactive([
 ])
 
 const change = (value: string | number) => {
-  props.editor.chain().focus().setFontFamily(value).run()
+  props.editor.chain().focus().setFontFamily(value as string).run()
   listener()
+  // @ts-ignore
   dropdown.value && dropdown.value.close()
 }
 

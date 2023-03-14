@@ -37,7 +37,7 @@ import Dropdown from 'tiptap/menus/common/dropdown.vue'
 import ToolTip from 'tiptap/menus/common/tooltip.vue'
 
 const props = defineProps<{ editor: Editor; placement?: string }>()
-const dropdown = ref<HTMLElement | null>(false)
+const dropdown = ref<HTMLElement | null>(null)
 const value = ref<string>('正文')
 const options = reactive([
   { label: '标题1', level: 1 },
@@ -59,6 +59,7 @@ const change = (value: string | number) => {
       .run()
   }
   listener()
+   // @ts-ignore
   dropdown.value && dropdown.value.close()
 }
 

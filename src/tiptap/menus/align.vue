@@ -2,10 +2,7 @@
   <Dropdown ref="dropdown" w="38px" :placement="placement">
     <template #btn>
       <ToolTip title="对齐方式" :placement="placement">
-        <div
-          class="select-title"
-          :class="{ 'select-title-active': options.some((v) => v.icon === value) }"
-        >
+        <div class="select-title" :class="{ 'select-title-active': isActive }">
           <div class="select-title-text">
             <svg-icon :icon="value" class="icon-btn" />
           </div>
@@ -75,6 +72,10 @@ const options = reactive<Array<Options>>([
     event: () => props.editor.chain().focus().setTextAlign('justify').run()
   }
 ])
+
+const isActive = computed(() => {
+  return options.some((v: Options) => v.icon === value.value)
+})
 
 const change = (value: Options) => {
   value.event()

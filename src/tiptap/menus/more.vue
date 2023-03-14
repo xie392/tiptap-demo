@@ -1,17 +1,18 @@
 <template>
-  <Dropdown ref="dropdown" w="38px" :placement="placement">
+  <Dropdown ref="dropdown" w="20px" :placement="placement">
     <template #btn>
-      <ToolTip title="更多文本样式" :placement="placement">
-        <div class="select-title" :class="{ 'select-title-active': isActive }">
+      <ToolTip title="插入" :placement="placement">
+        <div class="select-title">
           <div class="select-title-text">
-            <svg-icon :icon="value" class="icon-btn" />
+            <svg-icon icon="tntin-svg_99" class="icon-btn" />
           </div>
-          <span class="select-title-icon"></span>
+          <!-- <span class="select-title-icon"></span> -->
         </div>
       </ToolTip>
     </template>
     <template #content>
       <div class="select-content">
+        <span class="select-content-title">通用</span>
         <div
           class="select-content-item"
           v-for="(v, i) in options"
@@ -45,31 +46,30 @@ interface Options {
 
 const props = defineProps<{ editor: Editor; placement?: string }>()
 const dropdown = ref<HTMLElement | null>(null)
-const value = ref<string>('tntin-svg_40')
+const value = ref<string>('tntin-svg_134')
 const options = reactive<Array<Options>>([
   {
-    name: '上标',
-    value: 'superscript',
-    icon: 'tntin-svg_18',
-    event: () => props.editor.chain().focus().toggleSuperscript().run()
+    name: '图片',
+    value: 'left',
+    icon: 'tntin-svg_134',
+    event: () => props.editor.chain().focus().setTextAlign('left').run()
   },
   {
-    name: '下标',
-    value: 'subscript',
-    icon: 'tntin-svg_19',
-    event: () => props.editor.chain().focus().toggleSubscript().run()
+    name: '表格',
+    value: 'center',
+    icon: 'tntin-svg_132',
+    event: () => props.editor.chain().focus().setTextAlign('center').run()
   },
   {
-    name: '行内代码',
-    value: 'code',
-    icon: 'tntin-svg_64',
-    event: () => props.editor.chain().focus().toggleCode().run()
+    name: '代码块',
+    value: 'right',
+    icon: 'tntin-svg_136',
+    event: () => props.editor.chain().focus().setTextAlign('right').run()
   }
 ])
 
 const isActive = computed(() => {
- // @ts-ignore
-  return options.some((v: Options) => v.icon === value)
+  return options.some((v: Options) => v.icon === value.value)
 })
 
 const change = (value: Options) => {
@@ -82,18 +82,20 @@ const change = (value: Options) => {
 const current = (): string => {
   let mark = ''
   switch (true) {
-    case props.editor.isActive('superscript'):
-      mark = 'tntin-svg_18'
+    case props.editor.isActive('textAlign', { textAlign: 'left' }):
+      mark = 'tntin-svg_134'
       break
-    case props.editor.isActive('subscript'):
-      mark = 'tntin-svg_19'
+    case props.editor.isActive('textAlign', { textAlign: 'center' }):
+      mark = 'tntin-svg_132'
       break
-    case props.editor.isActive('code'):
-      mark = 'tntin-svg_64'
+    case props.editor.isActive('textAlign', { textAlign: 'right' }):
+      mark = 'tntin-svg_136'
+      break
+    case props.editor.isActive('textAlign', { textAlign: 'justify' }):
+      mark = 'tntin-svg_133'
       break
     default:
-      mark = 'tntin-svg_40'
-      break
+      mark = 'tntin-svg_134'
   }
   return mark
 }
@@ -121,5 +123,13 @@ onUnmounted(() => {
 
 .select-title-active {
   background: #f5f5f5;
+}
+
+.select-content-title {
+  font-size: 12px;
+  color: #999;
+  padding-left: 10px;
+  box-sizing: border-box;
+  display: inline-block;
 }
 </style>
