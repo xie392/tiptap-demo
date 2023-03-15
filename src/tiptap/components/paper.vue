@@ -1,8 +1,10 @@
 <template>
   <node-view-wrapper class="draw">
-    <input type="color" v-model="color" />
-    <input type="number" min="1" max="10" v-model="size" />
-    <button @click="clear">clear</button>
+    <div class="btn-item">
+      <input type="color" v-model="color" />
+      <input type="number" min="1" max="10" v-model="size" />
+      <button @click="clear">clear</button>
+    </div>
     <svg viewBox="0 0 500 250" ref="canvas">
       <template v-for="item in node.attrs.lines">
         <path
@@ -131,8 +133,10 @@ export default {
 .draw {
   height: auto;
   min-height: 300px;
+  position: relative;
+
   svg {
-    background: #f1f3f5;
+    background: #f5f5f5;
     cursor: crosshair;
   }
 
@@ -140,6 +144,41 @@ export default {
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
+  }
+
+  .btn-item{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    background: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+
+    input {
+      width: 50px;
+      height: 30px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 0 5px;
+      margin-right: 10px;
+    }
+
+    button {
+      width: 50px;
+      height: 30px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 0 5px;
+      margin-right: 10px;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #f5f5f5;
+    }
   }
 }
 </style>

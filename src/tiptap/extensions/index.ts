@@ -20,7 +20,6 @@ import SubsCript from '@tiptap/extension-subscript'
 import Superscript from '@tiptap/extension-superscript'
 import { Placeholder } from '@tiptap/extension-placeholder'
 import StarterKit from '@tiptap/starter-kit'
-import { VueNodeViewRenderer } from '@tiptap/vue-3'
 import TextStyle from '@tiptap/extension-text-style'
 import FontFamily from '@tiptap/extension-font-family'
 import Underline from '@tiptap/extension-underline'
@@ -30,6 +29,7 @@ import TaskList from '@tiptap/extension-task-list'
 import TextAlign from '@tiptap/extension-text-align'
 import BubbleMenu from '@tiptap/extension-bubble-menu'
 import Link from '@tiptap/extension-link'
+// import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 
 // 基础(自定义)
 import { FontSize } from 'tiptap/extensions/font-size'
@@ -39,21 +39,22 @@ import { TaskItem } from 'tiptap/extensions/task-item'
 import { LineHeight } from 'tiptap/extensions/line-height'
 import { PaperDrawing } from 'tiptap/extensions/paper'
 import { BuiltLink } from 'tiptap/extensions/link'
+import { ColorHighlighter } from 'tiptap/extensions/color-highlighter/color-highlighter'
+import { SmilieReplacer } from 'tiptap/extensions/smilie-replacer'
+// import { CodeBlockLight } from 'tiptap/extensions/code-block-light'
+// import { LowlightPlugin, CodeBlock } from 'tiptap/extensions/code-block-light'
 // import { Indent } from '../extensions/indent'
+
+import { VueNodeViewRenderer } from '@tiptap/vue-3'
+import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
+import CodeBlock from 'tiptap/components/code-block.vue'
+import { lowlight } from 'lowlight'
 
 const placeholders = ['使用 markdown 语法进行输入', '请输入内容', '一个占位提示']
 
-// const CustomDocument = Document.extend({
-//   content: 'heading block*'
-// })
-
-// const CustomDocument = Document.extend({
-//   content: 'taskList',
-// })
-
-// const CustomTaskItem = TaskItem.extend({
-//   content: 'inline*',
-// })
+const CustomDocument = Document.extend({
+  content: 'heading block*'
+})
 
 export const extensions = [
   // BubbleMenu.configure({
@@ -62,9 +63,10 @@ export const extensions = [
   // }),
   BubbleMenu.configure({
     // @ts-ignore
+    // shouldShow: true
     shouldShow: ({ editor, view, state, oldState, from, to }) => {
-      // only show the bubble menu for images and links
-      return editor.isActive('image') || editor.isActive('link')
+      console.log('shouldShow', editor, view, state, oldState, from, to)
+      return editor.isActive('image') || editor.isActive('Link')
     }
   }),
   BackgroundColor,
@@ -89,11 +91,24 @@ export const extensions = [
   Placeholder.configure({
     // @ts-ignore
     placeholder: ({ node, editor }) => {
+      console.log('placeholder', node,editor)
+
+      // @ts-ignore
+      // 自定义节点不会触发 placeholder
+      
       if (node.type.name === 'heading') {
         return editor.isEditable ? '请输入标题' : '未命名文档'
       }
 
-      return placeholders[~~(Math.random() * placeholders.length)]
+      // 类名为 block-wrapper 的节点
+      if (node.type.name === 'paragraph') {
+        // return editor.isEditable ? '请输入内容' : '未命名文档'
+        return editor.isEditable ? placeholders[~~(Math.random() * placeholders.length)] : ''
+      }
+
+      return ''
+
+      
     },
     showOnlyCurrent: true,
     showOnlyWhenEditable: true
@@ -113,5 +128,25 @@ export const extensions = [
   // Document.extend({
   //   content: 'paper',
   // }),
-  BuiltLink
+  BuiltLink,
+  // CustomDocument,
+  ColorHighlighter,
+  SmilieReplacer,
+  // CodeBlock,
+  // LowlightPlugin
+  CodeBlockLowlight.extend({
+    addNodeView() {
+      return VueNodeViewRenderer(CodeBlock)
+    }
+  }).configure({
+    lowlight,
+    HTMLAttributes: {
+      class: 'pre'
+    }
+  }),
+  Code.configure({
+    HTMLAttributes: {
+      class: 'inline-code'
+    }
+  }),
 ]

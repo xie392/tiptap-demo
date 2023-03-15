@@ -1,6 +1,13 @@
 import { mergeAttributes, Node, VueNodeViewRenderer } from '@tiptap/vue-3'
-
 import paper from 'tiptap/components/paper.vue'
+
+declare module '@tiptap/core' {
+  interface Commands<ReturnType> {
+    PaperDrawing: {
+      setPaper: (attrs: any) => ReturnType
+    }
+  }
+}
 
 export const PaperDrawing = Node.create({
   name: 'paper',

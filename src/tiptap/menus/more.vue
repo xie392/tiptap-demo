@@ -18,7 +18,6 @@
           v-for="(v, i) in options"
           :key="i"
           @click="change(v)"
-          :class="value === v.icon ? 'select-content-item-active' : ''"
         >
           <div class="select-content-item-icon">
             <svg-icon :icon="v.icon"></svg-icon>
@@ -49,10 +48,10 @@ const dropdown = ref<HTMLElement | null>(null)
 const value = ref<string>('tntin-svg_134')
 const options = reactive<Array<Options>>([
   {
-    name: '图片',
+    name: '代码块',
     value: 'left',
     icon: 'tntin-svg_134',
-    event: () => props.editor.chain().focus().setTextAlign('left').run()
+    event: () => props.editor.chain().focus().toggleCodeBlock().run()
   },
   {
     name: '表格',

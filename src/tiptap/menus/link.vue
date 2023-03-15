@@ -8,13 +8,16 @@
       <svg-icon icon="tntin-svg_93" class="icon-btn" />
     </button>
   </ToolTip>
-  <Modal :editor="editor" v-model:visible="visible"/>
+  <BubbleLink :editor="editor" />
+  <Modal :editor="editor" v-model:visible="visible" />
 </template>
 
 <script setup lang="ts">
 import type { Editor } from '@tiptap/core'
 import ToolTip from 'tiptap/menus/common/tooltip.vue'
 import Modal from 'tiptap/menus/link/modal.vue'
+import { BubbleMenu } from '@tiptap/vue-3'
+import BubbleLink from 'tiptap/menus/link/bubble-link.vue'
 
 const props = defineProps<{ editor: Editor; placement: string }>()
 const visible = ref<boolean>(false)

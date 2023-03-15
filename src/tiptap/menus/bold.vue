@@ -10,6 +10,7 @@
 import type { Editor } from '@tiptap/core'
 import ToolTip from 'tiptap/menus/common/tooltip.vue'
 
+
 const props = defineProps<{ editor: Editor; placement: string }>()
 
 const change = () => {

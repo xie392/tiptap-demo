@@ -75,9 +75,8 @@
     font-weight: bold;
   }
 
-  code {
+  .inline-code {
     background-color: rgba(#616161, 0.1);
-    color: #616161;
   }
 
   ul {
@@ -100,7 +99,7 @@
     li {
       display: flex;
       align-items: flex-start;
-      
+
       label {
         box-sizing: border-box;
         padding-top: 2px;
@@ -120,5 +119,26 @@
     margin: 15px 0;
     border: 0;
     border-top: 1px solid #eee;
+  }
+
+  .color {
+    white-space: nowrap;
+
+    &::before {
+      content: ' ';
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      border: 1px solid rgba(128, 128, 128, 0.3);
+      vertical-align: middle;
+      margin-right: 0.1em;
+      margin-bottom: 0.15em;
+      border-radius: 2px;
+      background-color: var(--color);
+    }
+  }
+
+  .block-wrapper:focus-visible {
+    outline: 1px solid #4d90fe;
   }
 }

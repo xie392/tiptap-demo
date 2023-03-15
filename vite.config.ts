@@ -24,7 +24,8 @@ export default ({ mode }: any) => {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
         '#': fileURLToPath(new URL('./src/types', import.meta.url)),
-        tiptap: fileURLToPath(new URL('./src/tiptap', import.meta.url))
+        tiptap: fileURLToPath(new URL('./src/tiptap', import.meta.url)),
+        editor: fileURLToPath(new URL('./src/editor', import.meta.url))
       }
     },
     build: {

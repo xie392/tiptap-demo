@@ -27,7 +27,8 @@
         "src/types/*"
       ],
       "tiptap/*": [
-        "src/tiptap/*"
+        "src/tiptap/*",
+        "src/editor/*"
       ]
     },
   },
@@ -35,8 +36,9 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
-, "src/permission.js"  ],
+    "src/**/*.vue",
+    "src/permission.js"
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

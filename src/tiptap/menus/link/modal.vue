@@ -44,6 +44,7 @@ const change = () => {
   }
 
   // 设置链接,如果没有选中文本,则会自动选中当前光标所在的文本
+  // @ts-ignore
   props.editor.chain().focus().addLink({ href: form.link, target: '_blank' }).run()
 
   props.editor

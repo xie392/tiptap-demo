@@ -14,22 +14,7 @@ import Document from '@tiptap/extension-document'
 const props = defineProps<{ editor: Editor; placement: string }>()
 
 const change = () => {
-  console.log(props.editor)
-
-  // Document.extend({
-  //   content: 'paper'
-  // })
-
-  // 给editor添加一个属性
-
-  // props.editor.extensions.Document.extend({
-  //   content: 'paper'
-  // })
-
-  // props.editor.commands.setContent({
-  //   content: 'paper'
-  // })
-
+  // @ts-ignore
   props.editor.chain().focus().setPaper({width:'100%',height:'300px'}).run()
 
 

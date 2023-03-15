@@ -4,7 +4,9 @@
       <input type="checkbox" :checked="isEditable" @change="() => (isEditable = !isEditable)" />
       Editable
     </div> -->
-    <bubble-menu :editor="editor" :tippy-options="{ duration: 100 }" v-if="editor">
+    <!-- :tippyOptions="{ maxWidth: 'calc(100vw - 100px)' }" -->
+    <!-- pluginKey="link-bubble-menu" -->
+    <bubble-menu :editor="editor" :tippy-options="{ duration: 100 }" v-if="editor && editor.isActive('Link')">
       <button
         @click="editor.chain().focus().toggleBold().run()"
         :class="{ 'is-active': editor.isActive('bold') }"
@@ -24,12 +26,22 @@
         strike
       </button>
     </bubble-menu>
-    <!-- <editor-content :editor="editor" /> -->
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { BubbleMenu } from '@tiptap/vue-3'
+import type { Editor } from '@tiptap/core'
+
+const props = defineProps<{ editor: Editor }>()
+
+// props.editor.on('selectionUpdate', () => {
+//   console.log("props.editor.isActive('link')", props.editor.isActive('Link'))
+// })
+
+// watch(()=>props.editor.isActive('link'), () => {
+//   console.log("props.editor.isActive('link')", props.editor.isActive('link'));
+// })
 
 // export default {
 //   components: {

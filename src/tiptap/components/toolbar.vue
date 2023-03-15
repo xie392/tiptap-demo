@@ -89,10 +89,10 @@ const items = reactive([
   markRaw(lineHeight),
   markRaw(Divider),
   markRaw(Blockquote),
-  markRaw(Link)
+  markRaw(Link),
 
   // test
-  // markRaw(Paper),
+  markRaw(Paper),
 ])
 
 const toMarkRaw = (component: Component) => {
