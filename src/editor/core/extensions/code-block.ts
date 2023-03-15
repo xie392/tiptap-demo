@@ -11,7 +11,7 @@ declare module '@tiptap/core' {
   }
 }
 
-export const CodeBlockLowlight = BuiltInCodeBlockLowlight.extend({
+export const CodeBlock = BuiltInCodeBlockLowlight.extend({
   content: 'CodeBlock',
   group: 'block',
   defining: true,
