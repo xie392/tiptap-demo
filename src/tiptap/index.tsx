@@ -6,6 +6,7 @@ import { forwardRef, useImperativeHandle } from "react"
 
 export interface TiptapEditorProps {}
 
+// @ts-ignore
 const TiptapEditor = forwardRef((_props:TiptapEditorProps,ref) => {
   // const { get } = props
 
