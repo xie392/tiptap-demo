@@ -56,6 +56,8 @@ import CollaborationCursor from "@tiptap/extension-collaboration-cursor"
 import { WebrtcProvider } from "y-webrtc"
 import * as Y from "yjs"
 
+import { customExtensions } from "./custom-kit"
+
 const ydoc = new Y.Doc()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const provider = new WebrtcProvider("tiptap-collaboration-extension", ydoc)
@@ -168,7 +170,11 @@ export const AllExtensions = [
   TableRow,
   TableHeader,
   TableCell,
-  TaskList,
+  TaskList.configure({
+    HTMLAttributes: {
+      class: "task-list",
+    },
+  }),
   TaskItem.configure({
     nested: true,
   }),
@@ -200,4 +206,5 @@ export const AllExtensions = [
     },
   }),
   Youtube,
+  ...customExtensions,
 ]

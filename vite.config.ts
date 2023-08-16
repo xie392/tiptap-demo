@@ -12,4 +12,7 @@ export default defineConfig({
       tiptap: fileURLToPath(new URL("./src/tiptap", import.meta.url)),
     },
   },
+  define: {
+    "process.env": process.env, 
+  },
 })

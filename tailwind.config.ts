@@ -17,6 +17,7 @@ export default {
         bgColor: "var(--m-bg-color)",
         mainColor: "var(--m-main-color)",
         textColor: "var(--m-text-color)",
+        toolbarIconColor: "var(--m-icon-color)",
       },
     },
   },

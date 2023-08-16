@@ -1,0 +1,20 @@
+.toolbar button,
+.toolbar [type='button'],
+.toolbar [type='reset'],
+.toolbar [type='submit'] {
+  background-color: transparent;
+}
+
+.toolbar {
+  --m-icon-color: #000;
+}
+
+.toolbar .is-active {
+  background: rgb(219 234 254 / 1);
+  border-radius: 4px;
+  --m-icon-color: rgb(64 150 255 / 1);
+  user-select: none;
+  border-width: 1px;
+  line-height: normal;
+}
+

@@ -1,6 +1,7 @@
 import TiptapEditor from "tiptap/index"
 import { Button, Space } from "antd"
 import React from "react"
+// import { ColorPicker } from "tiptap/tool-bar/components/color-picker"
 
 const App = () => {
   const editorRef = React.useRef<any | null>(null)
@@ -28,8 +29,11 @@ const App = () => {
           </Button>
         </Space>
       </header>
-      <main className="flex justify-center">
-        <div className="xl:w-[1000px] bg-bgColor min-h-[calc(100vh-96px)] mt-[20px] p-7">
+      <main className="flex justify-center gap-10">
+        {/* <div className="mt-[70px]">
+          <ColorPicker />
+        </div> */}
+        <div className="xl:w-[1000px] bg-bgColor min-h-[calc(100vh-96px)] mt-[70px] p-7">
           <TiptapEditor ref={editorRef} />
         </div>
       </main>
