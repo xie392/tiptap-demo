@@ -62,7 +62,7 @@ const ydoc = new Y.Doc()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const provider = new WebrtcProvider("tiptap-collaboration-extension", ydoc)
 
-const placeholders = ["使用 markdown 语法进行输入", "请输入内容", "一个占位提示"]
+const placeholders = ["使用 markdown 语法进行输入", "请输入内容", "输入 / 查看命令"]
 
 /**
  * 编辑器扩展
@@ -70,13 +70,12 @@ const placeholders = ["使用 markdown 语法进行输入", "请输入内容", "
  * @see Extension
  * @see https://www.tiptap.dev/api/extensions
  */
-export const AllExtensions = [
+export const defaultExtensions = [
   // 基本扩展
   StarterKit,
   Document,
   Paragraph,
   Text,
-
   // 其他扩展
   Blockquote.configure({
     HTMLAttributes: {
@@ -84,15 +83,15 @@ export const AllExtensions = [
     },
   }),
   Bold,
-  BubbleMenu.configure({
-    element: document.querySelector(".bubble-menu") as HTMLElement,
-  }),
+  // BubbleMenu.configure({
+  //   element: document.querySelector(".bubble-menu") as HTMLElement,
+  // }),
   BulletList,
   ListItem,
   CharacterCount.configure({
     limit: 10000,
   }),
-  Code,
+  // Code,
   CodeBlock.configure({
     languageClassPrefix: "language-",
   }),
@@ -134,7 +133,6 @@ export const AllExtensions = [
     // 多种颜色支持
     multicolor: true,
   }),
-  // History,
   HorizontalRule,
   Image.configure({
     allowBase64: true,
@@ -195,16 +193,18 @@ export const AllExtensions = [
     },
   }),
   // 协作
-  Collaboration.configure({
-    document: ydoc,
-  }),
-  CollaborationCursor.configure({
-    provider,
-    user: {
-      name: "xie392",
-      color: "#f783ac",
-    },
-  }),
-  Youtube,
-  ...customExtensions,
+  // Collaboration.configure({
+  //   document: ydoc,
+  // }),
+  // CollaborationCursor.configure({
+  //   provider,
+  //   user: {
+  //     name: "xie392",
+  //     color: "#f783ac",
+  //   },
+  // }),
+  // Youtube,
+  // ...customExtensions,
 ]
+
+export const AllExtensions = new Set([...defaultExtensions, ...customExtensions])

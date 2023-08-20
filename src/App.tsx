@@ -1,6 +1,7 @@
 import TiptapEditor from "tiptap/index"
 import { Button, Space } from "antd"
 import React from "react"
+// import Ui from "@/components/ui"
 // import { ColorPicker } from "tiptap/tool-bar/components/color-picker"
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
         </div> */}
         <div className="xl:w-[1000px] bg-bgColor min-h-[calc(100vh-96px)] mt-[70px] p-7">
           <TiptapEditor ref={editorRef} />
+          {/* <Ui /> */}
         </div>
       </main>
     </div>
