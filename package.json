@@ -63,6 +63,7 @@
     "@tiptap/starter-kit": "^2.0.4",
     "@tiptap/suggestion": "^2.0.4",
     "antd": "^5.8.3",
+    "class-variance-authority": "^0.7.0",
     "colord": "^2.9.3",
     "dayjs": "^1.11.9",
     "lowlight": "^2.9.0",

@@ -576,3 +576,9 @@
   display: inline-flex;
   background-color: #fff8c5;
 }
+
+.ProseMirror .mention {
+  background-color: #fff8c5;
+  border-radius: 3px;
+  padding: 0 4px;
+}

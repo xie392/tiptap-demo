@@ -19,6 +19,7 @@ export interface BarItems {
   command?: (editor: Editor) => void
   options?: string[]
   defaultValue?: string
+  content?: React.ReactNode
 }
 
 export const BarItems: BarItems[] = [
@@ -83,6 +84,7 @@ export const BarItems: BarItems[] = [
     name: ButtonPopoverType.FontColor,
     title: "文字颜色",
     command: (editor) => editor.chain().focus().setColor("#f36").run(),
+    // content:
   },
   {
     type: "ButtonPopover",

@@ -1,7 +1,7 @@
 import TiptapEditor from "tiptap/index"
 import { Button, Space } from "antd"
 import React from "react"
-// import Ui from "@/components/ui"
+import TestUI from "@/components/test"
 // import { ColorPicker } from "tiptap/tool-bar/components/color-picker"
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
   }
 
   return (
-    <div className="w-full bg-mainColor min-h-screen">
+    <div className="w-full bg-mainColor min-h-screen ">
       <header className="w-full h-14 pl-5 pr-5 flex justify-between items-center border-[#eee] border-solid border-b-[1px] bg-bgColor sticky top-0 z-10">
         <h3 className="text-xl font-bold">Tiptap Editor</h3>
         <Space>
@@ -35,8 +35,9 @@ const App = () => {
           <ColorPicker />
         </div> */}
         <div className="xl:w-[1000px] bg-bgColor min-h-[calc(100vh-96px)] mt-[70px] p-7">
-          <TiptapEditor ref={editorRef} />
+          {/* <TiptapEditor ref={editorRef} /> */}
           {/* <Ui /> */}
+          <TestUI />
         </div>
       </main>
     </div>

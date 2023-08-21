@@ -52,6 +52,10 @@ import Youtube from "@tiptap/extension-youtube"
 // 协作
 import Collaboration from "@tiptap/extension-collaboration"
 import CollaborationCursor from "@tiptap/extension-collaboration-cursor"
+
+import Suggestions from "@tiptap/suggestion"
+import { SuggestionsList } from "tiptap/core/wrappers/mention"
+
 // @ts-ignore
 import { WebrtcProvider } from "y-webrtc"
 import * as Y from "yjs"
@@ -148,9 +152,14 @@ export const defaultExtensions = [
    * @see: https://tiptap.dev/api/nodes/mention
    */
   Mention.configure({
-    renderLabel({ options, node }) {
-      return `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`
+    // renderLabel({ options, node }) {
+    //   return `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`
+    // },
+    HTMLAttributes: {
+      class: "mention",
     },
+    suggestion: SuggestionsList,
+    // suggestion: Suggestions,
   }),
   OrderedList.configure({
     itemTypeName: "listItem",
@@ -192,6 +201,7 @@ export const defaultExtensions = [
       return placeholders[Math.floor(Math.random() * placeholders.length)]
     },
   }),
+  // Suggestions,
   // 协作
   // Collaboration.configure({
   //   document: ydoc,
@@ -207,4 +217,4 @@ export const defaultExtensions = [
   // ...customExtensions,
 ]
 
-export const AllExtensions = new Set([...defaultExtensions, ...customExtensions])
+export const AllExtensions = [...defaultExtensions, ...customExtensions]

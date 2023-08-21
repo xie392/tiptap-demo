@@ -1,22 +1,28 @@
-export interface ButtonProps {
-  type?: "primary" | "default" | "danger" | "link"
-  size?: "large" | "middle" | "small"
-  disabled?: boolean
-  loading?: boolean
-  onClick?: (e: React.MouseEvent<HTMLElement>) => void
-  className?: string
-  style?: React.CSSProperties
-  children?: React.ReactNode
-}
+import React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
 
-const Button: React.FC<ButtonProps> = (props) => {
-  const { type, size, disabled, loading, onClick, children, className = "", style = {} } = props
+const button = cva("button rounded", {
+  variants: {
+    intent: {
+      primary: ["bg-blue-500", "text-white", "border-transparent", "hover:bg-blue-600"],
+      secondary: ["bg-white", "text-gray-800", "border-gray-400", "hover:bg-gray-100"],
+    },
+    size: {
+      small: ["text-sm", "py-[4px]", "px-2"],
+      medium: ["text-base", "py-[6px]", "px-4"],
+    },
+  },
+  compoundVariants: [{ intent: "primary", size: "medium", class: "" }],
+  defaultVariants: {
+    intent: "primary",
+    size: "medium",
+  },
+})
 
-  return (
-    <button className={`p-2 ${props.className}`} style={style}>
-      {children}
-    </button>
-  )
-}
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof button> {}
 
-export { Button }
+export const Button: React.FC<ButtonProps> = ({ className, intent, size, ...props }) => (
+  <button className={button({ intent, size, className })} {...props} />
+)
