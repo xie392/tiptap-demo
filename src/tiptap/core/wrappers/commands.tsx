@@ -1,9 +1,9 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from "react"
-import { ReactRenderer } from "@tiptap/react"
-import tippy from "tippy.js"
 import { Editor } from "@tiptap/core"
+import { NodeType } from "tiptap/shared"
 
 export interface ItemsOptions {
+  type: keyof typeof NodeType
   name: string
   title: string
   command: (editor: Editor) => void
@@ -14,7 +14,7 @@ export interface ItemsOptions {
 
 export interface CommandsProps {
   items: ItemsOptions[]
-  command: (props: { id: string }) => void
+  command: (props: { id: string; type: keyof typeof NodeType }) => void
   editor: Editor
 }
 
@@ -23,7 +23,7 @@ const CommandsWrapper: React.FC<CommandsProps> = forwardRef((props, ref) => {
 
   const selectItem = (item: ItemsOptions) => {
     item.command(props.editor)
-    props.command({ id: "" })
+    props.command({ id: "", type: "BLOCK" })
   }
 
   const upHandler = () => {
@@ -69,7 +69,7 @@ const CommandsWrapper: React.FC<CommandsProps> = forwardRef((props, ref) => {
             key={index}
             className={` 
             ${index === selectedIndex && "bg-blue-100"}
-            cursor-pointer text-sm hover:text-blue-300 transition-all duration-400 ease-in-out pr-3 pl-3 pt-1 pb-1`}
+            cursor-pointer text-sm hover:text-blue-300 transition-all duration-400 ease-in-out px-5 py-1`}
             onClick={() => selectItem(item)}
           >
             {item.title}
@@ -81,80 +81,5 @@ const CommandsWrapper: React.FC<CommandsProps> = forwardRef((props, ref) => {
     </div>
   )
 })
-
-export const SuggestionsList = {
-  items: () => {
-    const items: ItemsOptions[] = [
-      {
-        name: "Heading",
-        title: "标题1",
-        command: (editor) => editor.chain().focus().toggleHeading({ level: 1 }).run(),
-      },
-      {
-        name: "Heading",
-        title: "标题2",
-        command: (editor) => editor.chain().focus().toggleHeading({ level: 2 }).run(),
-      },
-    ]
-
-    return items
-  },
-
-  render: () => {
-    let component: ReactRenderer<CommandsProps>
-    let popup: any
-
-    return {
-      onStart: (props: any) => {
-        component = new ReactRenderer(CommandsWrapper, {
-          props,
-          editor: props.editor,
-        })
-
-        if (!props.clientRect) {
-          return
-        }
-
-        popup = tippy("body", {
-          getReferenceClientRect: props.clientRect,
-          appendTo: () => document.body,
-          content: component.element,
-          showOnCreate: true,
-          interactive: true,
-          trigger: "manual",
-          placement: "bottom-start",
-        })
-      },
-
-      onUpdate(props: any) {
-        component.updateProps(props)
-
-        if (!props.clientRect) {
-          return
-        }
-
-        popup[0].setProps({
-          getReferenceClientRect: props.clientRect,
-        })
-      },
-
-      onKeyDown(props: any) {
-        if (props.event.key === "Escape") {
-          popup[0].hide()
-
-          return true
-        }
-
-        // @ts-ignore
-        return component.ref?.onKeyDown(props)
-      },
-
-      onExit() {
-        popup[0].destroy()
-        component.destroy()
-      },
-    }
-  },
-}
 
 export default CommandsWrapper

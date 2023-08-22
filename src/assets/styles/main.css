@@ -26,4 +26,20 @@ body {
   --m-bg-color: #fff;
   --m-main-color: #f5f5f5;
   --m-text-color: #262626;
+
+  /* UI var */
+  --ui-primary-color: skyblue;
+  --ui-primary-color-hover: #1677ff;
+  --ui-bg-color: #fff;
+  --ui-main-color: #f5f5f5;
+  --ui-text-color: #262626;
+
+  /* 
+    Tiptap Vars
+  */
+  --tiptap-primary-color: #1677ff;
+  --tiptap-primary-color-hover: #1677ff;
+  --tiptap-bg-color: #fff;
+  --tiptap-main-color: #f5f5f5;
+  --tiptap-text-color: #262626;
 }

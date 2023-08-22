@@ -30,14 +30,15 @@ const App = () => {
           </Button>
         </Space>
       </header>
-      <main className="flex justify-center gap-10">
-        {/* <div className="mt-[70px]">
-          <ColorPicker />
-        </div> */}
-        <div className="xl:w-[1000px] bg-bgColor min-h-[calc(100vh-96px)] mt-[70px] p-7">
-          {/* <TiptapEditor ref={editorRef} /> */}
-          {/* <Ui /> */}
+      <main className="flex justify-center gap-10 items-start">
+        <div className="mt-[70px] bg-[#fff] p-5 px-8 flex flex-col gap-2 h-auto">
+          {/* <ColorPicker /> */}
+          <h2 className="text-xl">UI Views</h2>
           <TestUI />
+        </div>
+        <div className="xl:w-[1000px] bg-bgColor min-h-[calc(100vh-96px)] mt-[70px] p-7">
+          <TiptapEditor ref={editorRef} />
+          {/* <Ui /> */}
         </div>
       </main>
     </div>

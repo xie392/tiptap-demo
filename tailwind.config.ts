@@ -18,6 +18,20 @@ export default {
         mainColor: "var(--m-main-color)",
         textColor: "var(--m-text-color)",
         toolbarIconColor: "var(--m-icon-color)",
+
+        // ui
+        uiPrimaryColor: "var(--ui-primary-color)",
+        uiBgColor: "var(--ui-bg-color)",
+        uiMainColor: "var(--ui-main-color)",
+        uiTextColor: "var(--ui-text-color)",
+        uiToolbarIconColor: "var(--ui-icon-color)",
+
+        // ui
+        "tiptap-primary": "var(--tiptap-primary-color)",
+        "tiptap-bg": "var(--tiptap-bg-color)",
+        "tiptap-main": "var(--tiptap-main-color)",
+        "tiptap-text": "var(--tiptap-text-color)",
+        "tiptap-toolbar-icon": "var(--tiptap-icon-color)",
       },
     },
   },
