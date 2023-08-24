@@ -9,11 +9,11 @@ import Text from "@tiptap/extension-text"
 // 其他扩展
 import Blockquote from "@tiptap/extension-blockquote"
 import Bold from "@tiptap/extension-bold"
-import BubbleMenu from "@tiptap/extension-bubble-menu"
+// import BubbleMenu from "@tiptap/extension-bubble-menu"
 import BulletList from "@tiptap/extension-bullet-list"
 import ListItem from "@tiptap/extension-list-item"
 import CharacterCount from "@tiptap/extension-character-count"
-import Code from "@tiptap/extension-code"
+// import Code from "@tiptap/extension-code"
 import CodeBlock from "@tiptap/extension-code-block"
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight"
 import { lowlight } from "lowlight/lib/core"
@@ -26,12 +26,11 @@ import Gapcursor from "@tiptap/extension-gapcursor"
 import HardBreak from "@tiptap/extension-hard-break"
 import Heading from "@tiptap/extension-heading"
 import Highlight from "@tiptap/extension-highlight"
-// import History from "@tiptap/extension-history"
 import HorizontalRule from "@tiptap/extension-horizontal-rule"
 import Image from "@tiptap/extension-image"
 import Italic from "@tiptap/extension-italic"
 import Link from "@tiptap/extension-link"
-import Mention from "@tiptap/extension-mention"
+// import Mention from "@tiptap/extension-mention"
 import OrderedList from "@tiptap/extension-ordered-list"
 import Placeholder from "@tiptap/extension-placeholder"
 import Strike from "@tiptap/extension-strike"
@@ -48,23 +47,23 @@ import TextAlign from "@tiptap/extension-text-align"
 import TextStyle from "@tiptap/extension-text-style"
 import Typography from "@tiptap/extension-typography"
 import Underline from "@tiptap/extension-underline"
-import Youtube from "@tiptap/extension-youtube"
+// import Youtube from "@tiptap/extension-youtube"
 // 协作
-import Collaboration from "@tiptap/extension-collaboration"
-import CollaborationCursor from "@tiptap/extension-collaboration-cursor"
+// import Collaboration from "@tiptap/extension-collaboration"
+// import CollaborationCursor from "@tiptap/extension-collaboration-cursor"
 
-import Suggestions from "@tiptap/suggestion"
-import { SuggestionsList } from "tiptap/core/wrappers/mention"
+// import Suggestions from "@tiptap/suggestion"
+// import { SuggestionsList } from "tiptap/core/wrappers/mention"
 
 // @ts-ignore
-import { WebrtcProvider } from "y-webrtc"
-import * as Y from "yjs"
+// import { WebrtcProvider } from "y-webrtc"
+// import * as Y from "yjs"
 
 import { customExtensions } from "./custom-kit"
 
-const ydoc = new Y.Doc()
+// const ydoc = new Y.Doc()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const provider = new WebrtcProvider("tiptap-collaboration-extension", ydoc)
+// const provider = new WebrtcProvider("tiptap-collaboration-extension", ydoc)
 
 const placeholders = ["使用 markdown 语法进行输入", "请输入内容", "输入 / 查看命令"]
 
@@ -151,16 +150,16 @@ export const defaultExtensions = [
    * 提及
    * @see: https://tiptap.dev/api/nodes/mention
    */
-  Mention.configure({
-    // renderLabel({ options, node }) {
-    //   return `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`
-    // },
-    HTMLAttributes: {
-      class: "mention",
-    },
-    suggestion: SuggestionsList,
-    // suggestion: Suggestions,
-  }),
+  // Mention.configure({
+  //   // renderLabel({ options, node }) {
+  //   //   return `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`
+  //   // },
+  //   HTMLAttributes: {
+  //     class: "mention",
+  //   },
+  //   suggestion: SuggestionsList,
+  //   // suggestion: Suggestions,
+  // }),
   OrderedList.configure({
     itemTypeName: "listItem",
   }),

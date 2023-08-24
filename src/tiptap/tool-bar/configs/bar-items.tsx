@@ -149,7 +149,7 @@ export const BarItems: BarItems[] = [
     command: (editor) => editor.chain().focus().toggleTaskList().run(),
   },
   {
-    type: "ButtonPopover",
+    type: "Button",
     name: "table",
     title: "表格",
     command: (editor) => editor.chain().focus().insertTable().run(),

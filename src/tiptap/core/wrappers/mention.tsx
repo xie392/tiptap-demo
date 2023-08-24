@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from "react"
-import { ReactRenderer } from "@tiptap/react"
-import tippy from "tippy.js"
+// import { ReactRenderer } from "@tiptap/react"
+// import tippy from "tippy.js"
 
 export interface MentionProps {
   items: string[]
@@ -72,70 +72,70 @@ const MentionWrapper: React.FC<MentionProps> = forwardRef((props, ref) => {
   )
 })
 
-export const SuggestionsList = {
-  items: ({ query }: any) => {
-    return ["Apple", "Apricot", "AAA", "BBB", "CCC"]
-      .filter((item) => item.toLowerCase().startsWith(query.toLowerCase()))
-      .slice(0, 5)
-  },
+// export const SuggestionsList = {
+//   items: ({ query }: any) => {
+//     return ["Apple", "Apricot", "AAA", "BBB", "CCC"]
+//       .filter((item) => item.toLowerCase().startsWith(query.toLowerCase()))
+//       .slice(0, 5)
+//   },
 
-  render: () => {
-    let component: ReactRenderer<MentionProps>
-    let popup: any
+//   render: () => {
+//     let component: ReactRenderer<MentionProps>
+//     let popup: any
 
-    return {
-      onStart: (props: any) => {
-        console.log("props", props)
- 
-        component = new ReactRenderer(MentionWrapper, {
-          props,
-          editor: props.editor,
-        })
+//     return {
+//       onStart: (props: any) => {
+//         console.log("props", props)
 
-        if (!props.clientRect) {
-          return
-        }
+//         component = new ReactRenderer(MentionWrapper, {
+//           props,
+//           editor: props.editor,
+//         })
 
-        popup = tippy("body", {
-          getReferenceClientRect: props.clientRect,
-          appendTo: () => document.body,
-          content: component.element,
-          showOnCreate: true,
-          interactive: true,
-          trigger: "manual",
-          placement: "bottom-start",
-        })
-      },
+//         if (!props.clientRect) {
+//           return
+//         }
 
-      onUpdate(props: any) {
-        component.updateProps(props)
+//         popup = tippy("body", {
+//           getReferenceClientRect: props.clientRect,
+//           appendTo: () => document.body,
+//           content: component.element,
+//           showOnCreate: true,
+//           interactive: true,
+//           trigger: "manual",
+//           placement: "bottom-start",
+//         })
+//       },
 
-        if (!props.clientRect) {
-          return
-        }
+//       onUpdate(props: any) {
+//         component.updateProps(props)
 
-        popup[0].setProps({
-          getReferenceClientRect: props.clientRect,
-        })
-      },
+//         if (!props.clientRect) {
+//           return
+//         }
 
-      onKeyDown(props: any) {
-        if (props.event.key === "Escape") {
-          popup[0].hide()
+//         popup[0].setProps({
+//           getReferenceClientRect: props.clientRect,
+//         })
+//       },
 
-          return true
-        }
+//       onKeyDown(props: any) {
+//         if (props.event.key === "Escape") {
+//           popup[0].hide()
 
-        // @ts-ignore
-        return component.ref?.onKeyDown(props)
-      },
+//           return true
+//         }
 
-      onExit() {
-        popup[0].destroy()
-        component.destroy()
-      },
-    }
-  },
-}
+//         // @ts-ignore
+//         return component.ref?.onKeyDown(props)
+//       },
+
+//       onExit() {
+//         popup[0].destroy()
+//         component.destroy()
+//       },
+//     }
+//   },
+// }
 
 export default MentionWrapper

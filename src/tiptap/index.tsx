@@ -1,6 +1,6 @@
 import { useEditor, EditorContent } from "@tiptap/react"
 import { AllExtensions } from "tiptap/core/all-kit"
-import "./tiptap.css"
+import "./style/tiptap.css"
 // import { initValue } from "./init-value"
 import { forwardRef, useImperativeHandle } from "react"
 import ToolBar from "./tool-bar"

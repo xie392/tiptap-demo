@@ -23,7 +23,7 @@ const CommandsWrapper: React.FC<CommandsProps> = forwardRef((props, ref) => {
 
   const selectItem = (item: ItemsOptions) => {
     item.command(props.editor)
-    props.command({ id: "", type: "BLOCK" })
+    props.command({ id: "", type: 'BLOCK' })
   }
 
   const upHandler = () => {

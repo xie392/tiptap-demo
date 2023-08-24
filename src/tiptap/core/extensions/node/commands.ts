@@ -4,26 +4,37 @@ import CommandsWrapper, { CommandsProps, ItemsOptions } from "tiptap/core/wrappe
 import { ReactRenderer } from "@tiptap/react"
 import tippy, { Instance, Props } from "tippy.js"
 import { NodeType } from "tiptap/shared"
+import { PluginKey } from "@tiptap/pm/state"
 
 export type CommandsOptions = {
   HTMLAttributes: Record<string, any>
+
   suggestion: Omit<SuggestionOptions, "editor">
 }
 
+export const CommandsPluginKey = new PluginKey("commands")
+
 export const suggestion = {
+  // TODO: "/" 工具栏的按钮
   items: () => {
     const items: ItemsOptions[] = [
       {
-        type: "group",
+        type: NodeType.BLOCK,
         name: "Heading",
         title: "标题1",
         command: (editor) => editor.chain().focus().toggleHeading({ level: 1 }).run(),
       },
       {
-        type: "group",
+        type: NodeType.BLOCK,
         name: "Heading",
         title: "标题2",
         command: (editor) => editor.chain().focus().toggleHeading({ level: 2 }).run(),
+      },
+      {
+        type: NodeType.BLOCK,
+        name: "Blockquote",
+        title: "引用",
+        command: (editor) => editor.chain().focus().toggleBlockquote().run(),
       },
     ]
 
@@ -95,56 +106,60 @@ export const Commands = Node.create<CommandsOptions>({
       HTMLAttributes: {},
       suggestion: {
         char: "/",
+        pluginKey: CommandsPluginKey,
         command: ({ editor, range, props }) => {
           // 处理不同的 mention 节点
-          const { type } = props
 
-          if (type === NodeType.NODE) {
-            console.log("node")
-          } else if (type === NodeType.MARK) {
-            console.log("mark")
-          } else if (type === NodeType.INLINE) {
-            console.log("inline")
-          } else if (type === NodeType.BLOCK) {
-            console.log("block")
-          } else {
-            console.log("unknown")
-          }
+          // TODO: 根据 type 的不同，执行不同的命令
+          // const { type } = props
+          // console.log("type", type, NodeType.BLOCK)
+
+          // if (type === NodeType.NODE) {
+          //   console.log("node")
+          // } else if (type === NodeType.MARK) {
+          //   console.log("mark")
+          // } else if (type === NodeType.INLINE) {
+          //   console.log("inline")
+          // } else if (type === NodeType.BLOCK) {
+          //   console.log("block")
+          // } else {
+          //   console.log("unkown")
+          // }
 
           // 当下一个节点的类型为“text”时，将 range.to 加一
           // 并以空格字符开头
-          // const nodeAfter = editor.view.state.selection.$to.nodeAfter
-          // const overrideSpace = nodeAfter?.text?.startsWith(" ")
+          const nodeAfter = editor.view.state.selection.$to.nodeAfter
+          const overrideSpace = nodeAfter?.text?.startsWith(" ")
 
-          // if (overrideSpace) {
-          //   range.to += 1
-          // }
+          if (overrideSpace) {
+            range.to += 1
+          }
 
-          // // 插入 mention 节点
-          // editor
-          //   .chain()
-          //   .focus()
-          //   .insertContentAt(range, [
-          //     {
-          //       type: this.name,
-          //       attrs: props,
-          //     },
-          //     {
-          //       type: "text",
-          //       text: " ",
-          //     },
-          //   ])
-          //   .run()
-          // // 移动光标到 mention 节点后
-          // window.getSelection()?.collapseToEnd()
+          // 插入 mention 节点
+          editor
+            .chain()
+            .focus()
+            .insertContentAt(range, [
+              {
+                type: this.name,
+                attrs: props,
+              },
+              {
+                type: "text",
+                text: " ",
+              },
+            ])
+            .run()
+          // 移动光标到 mention 节点后
+          window.getSelection()?.collapseToEnd()
         },
-        // allow: ({ state, range }) => {
-        //   const $from = state.doc.resolve(range.from)
-        //   const type = state.schema.nodes[this.name]
-        //   const allow = !!$from.parent.type.contentMatch.matchType(type)
+        allow: ({ state, range }) => {
+          const $from = state.doc.resolve(range.from)
+          const type = state.schema.nodes[this.name]
+          const allow = !!$from.parent.type.contentMatch.matchType(type)
 
-        //   return allow
-        // },
+          return allow
+        },
       },
     }
   },
