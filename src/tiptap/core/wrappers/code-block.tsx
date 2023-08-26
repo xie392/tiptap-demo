@@ -5,7 +5,7 @@ const CodeBlockWrapper: React.FC<NodeViewProps> = (props) => {
   console.log("props", props.node.attrs.language)
   return (
     <NodeViewWrapper>
-      <pre>
+      <pre className={`language-${props.node.attrs.language}`}>
         <NodeViewContent as="code"></NodeViewContent>
       </pre>
     </NodeViewWrapper>

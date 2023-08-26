@@ -98,7 +98,7 @@ export const suggestion = {
   },
 }
 
-export const Commands = Node.create<CommandsOptions>({
+const Commands = Node.create<CommandsOptions>({
   name: "commands",
 
   addOptions() {
@@ -260,3 +260,5 @@ export const Commands = Node.create<CommandsOptions>({
   },
   suggestion,
 })
+
+export default Commands

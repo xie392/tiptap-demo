@@ -69,7 +69,7 @@ const suggestion = {
   },
 }
 
-export const Mention = BulitInMention.extend({
+const Mention = BulitInMention.extend({
   // addAttributes() {
   //   return {
   //     id: {
@@ -88,3 +88,5 @@ export const Mention = BulitInMention.extend({
   },
   suggestion,
 })
+
+export default Mention

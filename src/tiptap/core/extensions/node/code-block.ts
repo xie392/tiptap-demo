@@ -14,7 +14,7 @@ export interface CodeBlockLowlightOptions extends CodeBlockOptions {
   languageList?: string[]
 }
 
-export const CodeBlock = BuiltInCodeBlock.extend<CodeBlockLowlightOptions>({
+const CodeBlock = BuiltInCodeBlock.extend<CodeBlockLowlightOptions>({
   draggable: true,
 
   addOptions() {
@@ -71,3 +71,5 @@ export const CodeBlock = BuiltInCodeBlock.extend<CodeBlockLowlightOptions>({
   lowlight,
   defaultLanguage: "auto",
 })
+
+export default CodeBlock

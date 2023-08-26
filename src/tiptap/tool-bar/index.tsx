@@ -1,7 +1,7 @@
 import { Editor } from "@tiptap/core"
 import { Space } from "antd"
 import "./toolbar.css"
-import { BarItems, ButtonType, ButtonPopoverType, ButtonSelectType } from "./configs/bar-items"
+import { BarItems, ButtonType, ButtonPopoverType, ButtonSelectType, defaultColor } from "./configs/bar-items"
 import { DividerComponent, ButtonComponent } from "./components"
 import { ButtonSelect, ButtonPopover } from "./configs/bar-warpper"
 import { ColorPicker } from "./components/color-picker"
@@ -12,7 +12,7 @@ interface ToolBarProps {
 }
 
 const ToolBar = ({ editor }: ToolBarProps) => {
-  const [color, setColor] = useState<string>("")
+  const [color, setColor] = useState<string>(defaultColor)
 
   // 设置字体颜色或背景色
   const onColorSelect = (color: string, type: string) => {

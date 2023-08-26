@@ -59,7 +59,7 @@ import Underline from "@tiptap/extension-underline"
 // import { WebrtcProvider } from "y-webrtc"
 // import * as Y from "yjs"
 
-import { customExtensions } from "./custom-kit"
+// import { customExtensions } from "./custom-kit"
 
 // const ydoc = new Y.Doc()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -216,4 +216,4 @@ export const defaultExtensions = [
   // ...customExtensions,
 ]
 
-export const AllExtensions = [...defaultExtensions, ...customExtensions]
+export const AllExtensions = [...defaultExtensions]

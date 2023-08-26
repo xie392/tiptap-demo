@@ -1,9 +1,17 @@
-import { useEditor, EditorContent } from "@tiptap/react"
-import { AllExtensions } from "tiptap/core/all-kit"
+import { useEditor, EditorContent, BubbleMenu } from "@tiptap/react"
+import Collaboration from "@tiptap/extension-collaboration"
+import CollaborationCursor from "@tiptap/extension-collaboration-cursor"
+import { AllExtensions } from "tiptap/core"
 import "./style/tiptap.css"
 // import { initValue } from "./init-value"
 import { forwardRef, useImperativeHandle } from "react"
 import ToolBar from "./tool-bar"
+// @ts-ignore
+import { WebrtcProvider } from "y-webrtc"
+import * as Y from "yjs"
+
+const ydoc = new Y.Doc()
+const provider = new WebrtcProvider("tiptap-collaboration-cursor-extension", ydoc)
 
 export interface TiptapEditorProps {
   toolbar?: boolean
@@ -13,7 +21,19 @@ const TiptapEditor = forwardRef((props: TiptapEditorProps, ref) => {
   const { toolbar = true } = props
 
   const editor = useEditor({
-    extensions: AllExtensions,
+    extensions: [
+      ...AllExtensions,
+      Collaboration.configure({
+        document: ydoc,
+      }),
+      CollaborationCursor.configure({
+        provider,
+        user: {
+          name: "协作者",
+          color: "#f783ac",
+        },
+      }),
+    ],
     // content: initValue,
   })
 
@@ -28,24 +48,18 @@ const TiptapEditor = forwardRef((props: TiptapEditorProps, ref) => {
           <ToolBar editor={editor} />
         </div>
       )}
-      {/* {editor && (
+      {editor && (
         <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
-          <button
-            onClick={() => editor.chain().focus().toggleBold().run()}
-            className={editor.isActive("bold") ? "is-active" : ""}
-          >
-            bold
-          </button>
+          <div className="shadow-2xl bg-bgColor px-4 py-2 rounded">
+            <button className="bg-gray-50 ">BubbleMenu 按钮</button>
+          </div>
         </BubbleMenu>
-      )} */}
+      )}
       {/* {editor && (
         <FloatingMenu editor={editor} tippyOptions={{ duration: 100 }}>
-          <button
-            onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-            className={editor.isActive("heading", { level: 1 }) ? "is-active" : ""}
-          >
-            h1
-          </button>
+          <div className="shadow-2xl bg-bgColor px-4 py-2 rounded">
+            <button className="bg-gray-50 ">FloatingMenu 按钮</button>
+          </div>
         </FloatingMenu>
       )} */}
       <EditorContent editor={editor} />

@@ -15,7 +15,7 @@ declare module "@tiptap/core" {
   }
 }
 
-export const BackgroundColor = Extension.create<ColorOptions>({
+const BackgroundColor = Extension.create<ColorOptions>({
   name: "backgroundColor",
 
   addOptions() {
@@ -65,3 +65,5 @@ export const BackgroundColor = Extension.create<ColorOptions>({
     }
   },
 })
+
+export default BackgroundColor

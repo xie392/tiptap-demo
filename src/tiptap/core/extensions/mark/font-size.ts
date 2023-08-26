@@ -1,8 +1,7 @@
 import "@tiptap/extension-text-style"
-
 import { Extension, isNumber } from "@tiptap/core"
 
-export type ColorOptions = {
+type ColorOptions = {
   types: string[]
 }
 
@@ -14,7 +13,7 @@ declare module "@tiptap/core" {
   }
 }
 
-export const FontSize = Extension.create<ColorOptions>({
+const FontSize = Extension.create<ColorOptions>({
   name: "fontSize",
 
   addOptions() {
@@ -58,3 +57,5 @@ export const FontSize = Extension.create<ColorOptions>({
     }
   },
 })
+
+export default FontSize
