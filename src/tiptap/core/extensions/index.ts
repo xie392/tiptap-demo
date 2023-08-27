@@ -1,5 +1,6 @@
 // common
 import BubbleMenu from "./common/bubble-menu"
+import Draggable from "./common/dragable"
 import Dropcursor from "./common/dropcursor"
 import Focus from "./common/focus"
 import Gapcursor from "./common/gapcursor"
@@ -44,6 +45,7 @@ import Mention from "./node/mention"
 
 export const Extensions = [
   BubbleMenu,
+  Draggable,
   Dropcursor,
   Focus,
   Gapcursor,
